@@ -4,6 +4,8 @@ var searchTerm = "";
 var startMoment;
 var endMoment;
 var momentRange = [];
+var colorRange = d3.scale.category20();
+var usernameColors = {};
 
 $(".twitterSelectHeader").click(function () {
     $twitterHeader = $(this);
@@ -167,6 +169,7 @@ function makeTwitterSearchReq() {
     if (selectedTwitterUsers.size >= 1 || momentRange.length != 0) {
         if (momentRange.length == 0) {
             currentTwitterSearchUser = selectedTwitterUsers.keys().next().value;
+            setUserGraphColor(currentTwitterSearchUser);
             selectedTwitterUsers.delete(currentTwitterSearchUser);
             console.log(currentTwitterSearchUser);
             console.log(startMoment.toISOString());
@@ -244,6 +247,12 @@ var svg = d3.select(".testGraph").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+function setUserGraphColor(username) {
+    var colorIndex = Object.keys(usernameColors).length + 1;
+    usernameColors[username] = colorRange(colorIndex);
+
+};
+
 function graphSearchData() {
     console.log("In graphSearchData");
 
@@ -303,14 +312,23 @@ function graphSearchData() {
                  svg.append("path")
                     .datum(datesCounts)
                     .attr("class", "line")
-                    .attr("d", line);
-//                for (var i = 0; i < datesCounts.length; i++) {
-//                    console.log("Dates counts at " + i + " is: " + datesCounts[i]);
-//                    svg.append("path")
-//                        .datum(datesCounts[i])
-//                        .attr("class", "line")
-//                        .attr("d", line);
-//                }
+                    .attr("d", line)
+                    .attr("stroke", usernameColors[twitterUsername]);
             });
     });
+    buildGraphKey();
+};
+
+function buildGraphKey() {
+    var graphDefList = document.createElement("dl");
+    graphDefList.className = "graphKey";
+    var keyHTML = "";
+    Object.keys(usernameColors).forEach(function(k) {
+        var twitterUsername = k;
+        var usernameColor = usernameColors[twitterUsername];
+        keyHTML += "<dt> <div class=\"keyColorBox\" style=\"background: " + usernameColor + "\"></div></dt> ";
+        keyHTML += "<dd> - " + twitterUsername + " </dd>";
+    });
+    graphDefList.innerHTML = keyHTML;
+    document.getElementsByClassName("graphKeyContainer")[0].appendChild(graphDefList);
 };
