@@ -11,7 +11,7 @@ with open('requirements.txt') as inf:
 
 setup(
     name='steve-zissou',
-    version='0.0.0.1',
+    version='0.0.0.2',
     description='Web app for displaying data collected from various sources',
     author='Brett Smythe',
     author_email='smythebrett@gmail.com',
