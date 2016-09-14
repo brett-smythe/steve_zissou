@@ -13,7 +13,8 @@ logger = get_logger(__name__)
 web_app = Flask(
     __name__,
     template_folder='/opt/steve-zissou/templates/',
-    static_folder='/opt/steve-zissou/static/'
+    static_folder='/opt/steve-zissou/static/',
+    static_url_path='static'
 )
 
 
