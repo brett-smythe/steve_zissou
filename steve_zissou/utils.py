@@ -11,7 +11,7 @@ def get_logger(module_name):
     logger = logging.getLogger(module_name)
     logger.setLevel(logging.DEBUG)
     handler = logging.handlers.TimedRotatingFileHandler(
-        '/var/log/steve_zissou/zissou.log', 'midnight', 1, 0, 'utf-8', False,
+        '/var/log/steve-zissou/zissou.log', 'midnight', 1, 0, 'utf-8', False,
         True
     )
     formatter = logging.Formatter(
