@@ -10,7 +10,7 @@ from eleanor_client.endpoints import twitter as eleanor_twitter
 
 logger = get_logger(__name__)
 
-web_app = Flask(__name__)
+web_app = Flask(__name__, template_folder='/opt/steve-zissou/templates/')
 
 
 @web_app.route('/')
