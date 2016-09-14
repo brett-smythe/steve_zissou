@@ -53,9 +53,6 @@ def tweet_search_on_date():
                         mimetype='application/json',
 
                     )
-#                    resp.headers.add('Access-Control-Allow-Origin', '*')
-#                    resp.headers.add('Access-Control-Allow-Headers',
-#                                     'Content-Type')
                     return resp
                 else:
                     resp = Response(
@@ -63,17 +60,12 @@ def tweet_search_on_date():
                         mimetype='application/json',
                         response=json.dumps(search_data)
                     )
-#                    resp.headers.add('Access-Control-Allow-Origin', '*')
-#                    resp.headers.add('Access-Control-Allow-Headers',
-#                                     'Content-Type')
                     return resp
     resp = Response(
         status=204,
         mimetype='application/json',
 
     )
-#    resp.headers.add('Access-Control-Allow-Origin', '*')
-#    resp.headers.add('Access-Control-Allow-Headers', 'Content-Type')
     return resp
 
 
