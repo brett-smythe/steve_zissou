@@ -8,8 +8,6 @@ from utils import get_logger
 from eleanor_client.endpoints import twitter as eleanor_twitter
 
 
-logger = get_logger(__name__)
-
 web_app = Flask(
     __name__,
     template_folder='/opt/steve-zissou/templates/',
@@ -21,6 +19,7 @@ web_app = Flask(
 @web_app.route('/')
 def app_root():
     """Base url for steve_zissou service"""
+    logger = get_logger(__name__)
     logger.debug('Request made against root url')
     return render_template('base.html')
 
@@ -44,9 +43,6 @@ def tweet_search_on_date():
                 req_search_term = request.json['search_term']
                 valid_req_data = req_username and req_date and req_search_term
                 if valid_req_data:
-                    print req_username
-                    print req_date
-                    print req_search_term
                     search_data = eleanor_twitter.tweet_search_on_date(
                         req_username,
                         req_date,
@@ -54,9 +50,7 @@ def tweet_search_on_date():
                     )
                 if search_data is None or not valid_req_data:
                     resp = Response(
-                        status=204,
-                        mimetype='application/json',
-
+                        status=204
                     )
                     return resp
                 else:
