@@ -1,4 +1,5 @@
 """General steve_zissou utilities"""
+import os
 import logging
 import logging.config
 import time
@@ -8,10 +9,15 @@ def get_logger(module_name):
     """Get a logger with created with values from settings/logging.conf and
     using time.gmtime
     """
+    log_path = '/tmp/zissou_dev.log'
+    if 'RUN_ENV' in os.environ:
+        if os.environ['RUN_ENV'] == 'production':
+            log_path = '/var/log/steve-zissou/zissou.log'
+
     logger = logging.getLogger(module_name)
     logger.setLevel(logging.DEBUG)
     handler = logging.handlers.TimedRotatingFileHandler(
-        '/var/log/steve-zissou/zissou.log', 'midnight', 1, 0, 'utf-8', False,
+        log_path, 'midnight', 1, 0, 'utf-8', False,
         True
     )
     formatter = logging.Formatter(
