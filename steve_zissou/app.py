@@ -11,18 +11,10 @@ from eleanor_client.endpoints import twitter as eleanor_twitter
 
 
 static_url_path = '/static'
-if 'RUN_ENV' in os.environ:
-    if os.environ['RUN_ENV'] == 'production':
-        web_app = Flask(
-            __name__,
-            root_path='/opt/steve-zissou/',
-            static_folder=None
-        )
-else:
-    web_app = Flask(
-        __name__,
-        static_url_path=static_url_path
-    )
+web_app = Flask(
+    __name__,
+    static_url_path=static_url_path
+)
 
 
 @web_app.route('/')
