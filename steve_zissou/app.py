@@ -22,6 +22,9 @@ def app_root():
     """Base url for steve_zissou service"""
     logger = get_logger(__name__)
     logger.debug('Request made against root url')
+    if 'RUN_ENV' in os.environ:
+        if os.environ['RUN_ENV'] == 'production':
+            return render_template('base.html')
     path_to_js = url_for('static', filename='main.min.js')
     return render_template('base.html', path_to_js=path_to_js)
 
