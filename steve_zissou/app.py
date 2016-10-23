@@ -14,10 +14,10 @@ static_url_path = '/static'
 if 'RUN_ENV' in os.environ:
     if os.environ['RUN_ENV'] == 'production':
         template_folder = '/opt/steve-zissou/templates/',
-        static_path = '/opt/steve-zissou/'
         static_folder = 'static',
         web_app = Flask(
             __name__,
+            root_path='/opt/steve-zissou/',
             template_folder=template_folder,
             static_folder=static_folder,
             static_url_path=static_url_path
