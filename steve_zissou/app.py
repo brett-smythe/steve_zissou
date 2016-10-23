@@ -1,19 +1,31 @@
 """Main app module for steve_zissou service"""
 # pylint: disable=import-error
+import os
 import json
-from flask import Flask, render_template, Response, request
+
+from flask import Flask, render_template, Response, request, url_for
 
 from utils import get_logger
 
 from eleanor_client.endpoints import twitter as eleanor_twitter
 
 
-web_app = Flask(
-    __name__,
-    template_folder='/opt/steve-zissou/templates/',
-    static_folder='/opt/steve-zissou/static/',
-    static_url_path='/static'
-)
+static_url_path = '/static'
+if 'RUN_ENV' in os.environ:
+    if os.environ['RUN_ENV'] == 'production':
+        template_folder = '/opt/steve-zissou/templates/',
+        static_folder = '/opt/steve-zissou/static/',
+        web_app = Flask(
+            __name__,
+            template_folder=template_folder,
+            static_folder=static_folder,
+            static_url_path=static_url_path
+        )
+else:
+    web_app = Flask(
+        __name__,
+        static_url_path=static_url_path
+    )
 
 
 @web_app.route('/')
@@ -21,7 +33,8 @@ def app_root():
     """Base url for steve_zissou service"""
     logger = get_logger(__name__)
     logger.debug('Request made against root url')
-    return render_template('base.html')
+    path_to_js = url_for('static', filename='main.min.js')
+    return render_template('base.html', path_to_js=path_to_js)
 
 
 @web_app.route('/eleanor/twitter-users', strict_slashes=False)
@@ -69,7 +82,11 @@ def tweet_search_on_date():
 
 
 def test():
-    """Run the app in test mode"""
+    """Run the app in dev mode"""
+    # the host is set to 0.0.0.0 because currently development happens between
+    # two machines with one playing development host, were this to be a project
+    # developed outside of a single person on a home network this would be
+    # changed to 127.0.0.1
     web_app.run(host='0.0.0.0', port=5050)
 
 if __name__ == '__main__':
