@@ -73,6 +73,16 @@ def tweet_search_on_date():
     return resp
 
 
+@web_app.route('/eleanor/track-twitter-user/<username>', methods=['PUT'],
+               strict_slashes=False)
+def track_new_twitter_user(username):
+    """Add a new twitter user to track, temporary endpoint as later this will
+    be rolled into a form"""
+    eleanor_twitter.track_new_twitter_user(username)
+    resp = Response(status=200)
+    return resp
+
+
 def test():
     """Run the app in dev mode"""
     # the host is set to 0.0.0.0 because currently development happens between
