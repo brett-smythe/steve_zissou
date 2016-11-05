@@ -32,7 +32,12 @@ def app_root():
 @web_app.route('/eleanor/twitter-users', strict_slashes=False)
 def get_twitter_users():
     """Pull twitter users from eleanor"""
-    tracked_users = eleanor_twitter.get_tracked_twitter_users()
+    tracked_users = []
+    if 'RUN_ENV' in os.environ:
+        if os.environ['RUN_ENV'] == 'production':
+            tracked_users = eleanor_twitter.get_tracked_twitter_users()
+    else:
+        tracked_users = ['NASA', 'CNN', 'Space_Station']
     return json.dumps(tracked_users)
 
 
