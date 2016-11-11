@@ -63,3 +63,6 @@ target/
 
 # Static files
 static/
+
+# Vim swap
+*.swp
