@@ -37,21 +37,33 @@
           <p class="twitter-select-text">Select Date</p>
         </div>
         <div id="twitter-select-date" style="display: none">
-          <ul class="dateFields">
-            <li><input type="text" id="startDate"></li>
-            <li><input type="text" id="endDate"></li>
+          <ul id="date-fields">
+            <!--
+            <li class="twitter-date-list"><button id="start-date" class="twitter-date-button">Start Date<br>&nbsp;</button></li>
+            -->
+            <li class="twitter-date-list"><input type="text" value="Start Date" id="start-date" class="twitter-date-button"></li>
+            <li id="date-arrow-list" class="twitter-date-list"><img id="date-arrow" src="static/images/green-arrow.png"></li>
+            <li class="twitter-date-list"><input type="text" value="End Date" id="end-date" class="twitter-date-button"></li>
+            <!--
+            <li class="twitter-date-list"><button id="end-date" class="twitter-date-button">End Date<br>&nbsp;</button></li>
+            -->
           </ul>
         </div>
         <div class="search-text-containers" id="twitter-select-term-container">
           <p class="twitter-select-text">Search Term</p>
         </div>
         <div id="twitter-select-string" style="display: none">
-          <input type="text" id="searchTerm">
+          <input type="text" id="search-term">
         </div>
-        <button id="searchButton">Search</button>
+        <div id="search-button-container">
+          <button id="graph-search-button">Graph!</button>
+        </div>
       </div>
-      <div id="twitter-search-graph">
-        <p>Graph lives here</p>
+      <div id="graph-container">
+        <div id="twitter-search-graph">
+        </div>
+        <div id="graph-key-container">
+        </div>
       </div>
     </div>
 
