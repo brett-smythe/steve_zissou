@@ -38,10 +38,10 @@ def get_twitter_users():
             tracked_users = eleanor_twitter.get_tracked_twitter_users()
     else:
         tracked_users = [
-            'NASA', 'CNN', 'Space_Station', 'WaPo', 'Kotaku', 'GiantBomb',
-            'Jalopnik', 'io9', 'RunButton', 'LethalFrag', 'SciShow',
-            'TheCrashCourse', 'NASAJPL', 'NASAJuno', 'JPL_Technology',
-            'NASAJPL_EDU', 'AsteroidWatch'
+            'NASA', 'CNN', 'Space_Station', 'washingtonpost', 'Kotaku',
+            'GiantBomb', 'Jalopnik', 'io9', 'RunButton', 'LethalFrag',
+            'SciShow', 'TheCrashCourse', 'NASAJPL', 'NASAJuno',
+            'JPL_Technology', 'NASAJPL_EDU', 'AsteroidWatch'
         ]
     return json.dumps(tracked_users)
 
