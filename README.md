@@ -2,6 +2,8 @@
 
 Flask front end for pulling data from and graphing data from [Eleanor](https://github.com/brett-smythe/eleanor).
 
+To see how this fits in with the other repos please see [Aquatic Services Wiki](https://github.com/brett-smythe/ansible_configs/wiki)
+
 ## Install
 Recommended to install and run in a virtualenv
 ```
