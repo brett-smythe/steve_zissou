@@ -1,5 +1,6 @@
 """Tests for steve_zissou web app"""
 # pylint: disable=import-error
+import os
 import unittest
 import json
 
@@ -31,6 +32,7 @@ class SteveZissouAppCases(unittest.TestCase):
             return func_wrapper
         return decorator
 
+    @mock.patch.dict(os.environ, {'RUN_ENV': 'production'})
     @mock.patch('steve_zissou.app.eleanor_twitter')
     @create_test_context('eleanor/twitter-users', 'GET')
     def test_get_twitter_users(self, mock_eleanor_twitter):
