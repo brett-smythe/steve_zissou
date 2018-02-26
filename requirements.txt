@@ -1,6 +1,6 @@
 click==6.6
 dominate==2.2.1
-eleanor-client==0.3.7
+eleanor-client>=0.3.7
 Flask==0.11.1
 funcsigs==1.0.2
 gunicorn==19.6.0
